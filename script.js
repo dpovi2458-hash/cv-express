@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnConfirmPayment = document.getElementById('btn-confirm-payment');
     const generatedCodeEl = document.getElementById('generated-code');
     const inputCode = document.getElementById('input-validation-code');
+    const btnWhatsapp = document.getElementById('btn-whatsapp-support');
 
     // Editor
     const btnPrint = document.getElementById('btn-print');
@@ -89,19 +90,39 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => btnCopyPhone.innerHTML = originalBtn, 2000);
     });
 
+    // Nuevo: Botón Soporte WhatsApp
+    if (btnWhatsapp) {
+        btnWhatsapp.addEventListener('click', () => {
+            const code = appState.userCode || 'CV-XXXX';
+            const msg = `Hola David, ya realicé mi pago de S/ 1.00. \nMi código es: *${code}*.\nAdjunto mi captura aquí.`;
+            const url = `https://wa.me/51944507095?text=${encodeURIComponent(msg)}`;
+            window.open(url, '_blank');
+        });
+    }
+
     btnConfirmPayment.addEventListener('click', () => {
         const input = inputCode.value.trim().toUpperCase();
         const expected = appState.userCode;
 
-        if (input === expected) {
-            // PROCESO DE PAGO EXITOSO
-            alert(`🎉 ¡Pago validado correctamente!\n\nBienvenido al Editor de CV Express.`);
-            appState.isPaid = true;
-            saveAppState();
-            showView('editor');
-        } else {
-            alert('❌ Código incorrecto.\nPor favor escribe el código tal cual aparece arriba (Ej: CV-1234).');
-        }
+        // Feedback Visual "Verificando"
+        const originalText = btnConfirmPayment.innerText;
+        btnConfirmPayment.innerText = "Verificando...";
+        btnConfirmPayment.disabled = true;
+
+        setTimeout(() => {
+            btnConfirmPayment.innerText = originalText;
+            btnConfirmPayment.disabled = false;
+
+            if (input === expected) {
+                // PROCESO DE PAGO EXITOSO
+                alert(`🎉 ¡Pago validado correctamente!\n\nBienvenido al Editor de CV Express.`);
+                appState.isPaid = true;
+                saveAppState();
+                showView('editor');
+            } else {
+                alert('❌ Código incorrecto.\nPor favor escribe el código tal cual aparece arriba (Ej: CV-1234).');
+            }
+        }, 1500); // Simulamos 1.5s de red
     });
 
     // --- 4. PERSISTENCIA EDITOR (LocalStorage) ---
@@ -178,6 +199,45 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             reader.readAsDataURL(file);
         }
+    });
+
+    // --- MEJORAS NIVEL 1: FILAS DINÁMICAS ---
+
+    // Delegación para eliminar filas
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btn-delete-row')) {
+            const item = e.target.closest('.item-wrapper');
+            const parent = item.parentNode;
+            // Solo borrar si hay más de 1 elemento, para no dejar la lista vacía
+            if (parent.querySelectorAll('.item-wrapper').length > 1) {
+                item.remove();
+                saveContent();
+            } else {
+                alert('Debes mantener al menos un elemento.');
+            }
+        }
+    });
+
+    // Botones para añadir filas (+)
+    document.querySelectorAll('.btn-add-row').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-target');
+            const container = document.getElementById(targetId);
+            const template = container.querySelector('.item-wrapper'); // Clonamos el primero como plantilla
+
+            if (template) {
+                const clone = template.cloneNode(true);
+
+                // Limpiar contenido editable
+                clone.querySelectorAll('[contenteditable]').forEach(el => {
+                    el.innerText = '';
+                    // Si tiene placeholder, se verá vacío
+                });
+
+                container.appendChild(clone);
+                saveContent();
+            }
+        });
     });
 
     // --- 6. EXPORTAR PDF ---

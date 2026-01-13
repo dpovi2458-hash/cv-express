@@ -378,6 +378,212 @@ body {
     border-bottom: 1px solid var(--border);
 }
 
+/* --- LANDING EXTRAS --- */
+.cv-preview-container {
+    margin: 2rem 0;
+    perspective: 1000px;
+}
+
+.cv-preview-mockup {
+    width: 200px;
+    height: 280px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: rotateY(-10deg) rotateX(5deg);
+    transition: transform 0.3s;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+}
+
+.cv-preview-mockup:hover {
+    transform: rotateY(0) rotateX(0) scale(1.05);
+}
+
+/* Mockup Content (Abstract representation) */
+.mock-header {
+    height: 15%;
+    background: #e2e8f0;
+    margin-bottom: 5px;
+}
+
+.mock-body {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 5px;
+    height: 100%;
+}
+
+.mock-col-left {
+    background: #f7fafc;
+    height: 80%;
+}
+
+.mock-col-right {
+    background: #fff;
+    height: 80%;
+}
+
+.mock-line {
+    height: 4px;
+    background: #cbd5e0;
+    margin-bottom: 4px;
+    border-radius: 2px;
+}
+
+.how-it-works {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.hiw-step {
+    max-width: 150px;
+}
+
+.hiw-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.hiw-title {
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+    display: block;
+    font-size: 0.9rem;
+}
+
+.hiw-desc {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.social-proof {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Whatsapp Button */
+.btn-whatsapp {
+    background-color: #25D366;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+.btn-whatsapp:hover {
+    background-color: #128C7E;
+}
+
+/* QR Images */
+.qr-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.qr-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 8px;
+    border: 2px solid #e2e8f0;
+    object-fit: cover;
+}
+
+/* --- EDITOR CONTROLS --- */
+.group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.group-header h3 {
+    margin-bottom: 0 !important;
+    border-left: none !important;
+    padding-left: 0 !important;
+}
+
+/* Reapply style to h3 inside main-group but handle the flex container */
+.main-group h3 {
+    border-left: 5px solid var(--accent);
+    padding-left: 10px;
+}
+
+.btn-add-row {
+    background: #edf2f7;
+    color: var(--dark-bg);
+    border: 1px solid #cbd5e0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: all 0.2s;
+}
+
+.btn-add-row:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+/* Placeholders for empty contenteditable */
+[contenteditable="true"]:empty:before {
+    content: attr(data-placeholder);
+    color: #a0aec0;
+    pointer-events: none;
+    font-style: italic;
+}
+
+/* Delete Button for List Items */
+.item-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.item-wrapper:hover .btn-delete-row {
+    opacity: 1;
+}
+
+.btn-delete-row {
+    position: absolute;
+    right: -25px;
+    top: 0;
+    color: #e53e3e;
+    cursor: pointer;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.2s;
+    padding: 2px 5px;
+}
+
 /* --- DOCUMENT EDITOR CORE --- */
 .preview-area {
     display: flex;

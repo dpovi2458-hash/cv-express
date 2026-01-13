@@ -30,6 +30,42 @@
                 <h1>Crea tu CV de Alto Impacto en Minutos</h1>
                 <p class="hero-subtitle">Diseño ATS-Friedly • Exportación PDF Nítida • 100% Privado</p>
 
+                <!-- CV Preview Mockup -->
+                <div class="cv-preview-container">
+                    <div class="cv-preview-mockup">
+                        <div class="mock-header"></div>
+                        <div class="mock-body">
+                            <div class="mock-col-left"></div>
+                            <div class="mock-col-right">
+                                <div class="mock-line" style="width: 60%"></div>
+                                <div class="mock-line" style="width: 40%"></div>
+                                <div class="mock-line" style="width: 90%; margin-top: 10px"></div>
+                                <div class="mock-line"></div>
+                                <div class="mock-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How It Works -->
+                <div class="how-it-works">
+                    <div class="hiw-step">
+                        <span class="hiw-icon">💸</span>
+                        <span class="hiw-title">1. Paga S/ 1.00</span>
+                        <span class="hiw-desc">Acceso inmediato y de por vida.</span>
+                    </div>
+                    <div class="hiw-step">
+                        <span class="hiw-icon">📝</span>
+                        <span class="hiw-title">2. Edita tus Datos</span>
+                        <span class="hiw-desc">Plantilla profesional lista para usar.</span>
+                    </div>
+                    <div class="hiw-step">
+                        <span class="hiw-icon">📄</span>
+                        <span class="hiw-title">3. Descarga PDF</span>
+                        <span class="hiw-desc">Formato A4 perfecto para postular.</span>
+                    </div>
+                </div>
+
                 <div class="pricing-card">
                     <div class="price-tag">
                         <span class="currency">S/</span>
@@ -44,6 +80,10 @@
                     </ul>
                     <button id="btn-start-now" class="btn-cta Pulse">Crear mi CV Ahora</button>
                     <p class="secure-text">🔒 Pago seguro vía Yape/Plin</p>
+                    <div class="social-proof">
+                        <span>⭐</span>
+                        <span><strong>+500 CVs</strong> creados hoy</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -62,7 +102,13 @@
                 <div class="step">
                     <div class="step-number">1</div>
                     <div class="step-text">
-                        <p>Yapea o Plinea <strong>S/ 1.00</strong> al número:</p>
+                        <p>Yapea o Plinea <strong>S/ 1.00</strong> escaneando el QR:</p>
+
+                        <div class="qr-container">
+                            <img src="yape-qr.png" alt="QR Yape" class="qr-img">
+                            <img src="plin-qr.png" alt="QR Plin" class="qr-img">
+                        </div>
+
                         <div class="copy-box">
                             <span class="phone-number">944 507 095</span>
                             <button id="btn-copy-phone" class="btn-icon-small" title="Copiar">📋</button>
@@ -90,6 +136,10 @@
                         <p>Confirma el código aquí para entrar:</p>
                         <input type="text" id="input-validation-code" placeholder="Ej: CV-1234" class="input-code">
                         <button id="btn-confirm-payment" class="btn-primary full-width">Ya pagué - Empezar</button>
+
+                        <button id="btn-whatsapp-support" class="btn-whatsapp">
+                            <span class="icon">💬</span> Enviar comprobante por WhatsApp
+                        </button>
                     </div>
                 </div>
             </div>
@@ -220,8 +270,12 @@
                     </header>
 
                     <div class="main-group">
-                        <h3>EXPERIENCIA LABORAL</h3>
-                        <div id="experience-list" contenteditable="true">
+                        <div class="group-header">
+                            <h3>EXPERIENCIA LABORAL</h3>
+                            <button class="btn-add-row" data-target="experience-list"
+                                title="Añadir experiencia">+</button>
+                        </div>
+                        <div id="experience-list">
                             <article class="job-item">
                                 <div class="job-header">
                                     <h4>Senior Web Developer</h4>
@@ -256,36 +310,55 @@
 
                     <!-- NUEVA SECCIÓN: LOGROS Y CERTIFICACIONES -->
                     <div class="main-group">
-                        <h3>LOGROS Y CERTIFICACIONES</h3>
-                        <div id="achievements-list" contenteditable="true">
-                            <article class="job-item">
+                        <div class="group-header">
+                            <h3>LOGROS Y CERTIFICACIONES</h3>
+                            <button class="btn-add-row" data-target="achievements-list" title="Añadir logro">+</button>
+                        </div>
+                        <div id="achievements-list">
+                            <article class="job-item item-wrapper">
                                 <div class="job-header">
-                                    <h4>AWS Certified Solutions Architect</h4>
-                                    <span class="date">2023</span>
+                                    <h4 contenteditable="true" data-placeholder="Título del Logro">AWS Certified
+                                        Solutions Architect</h4>
+                                    <span class="date" contenteditable="true" data-placeholder="Año">2023</span>
+                                    <span class="btn-delete-row" title="Eliminar fila">×</span>
                                 </div>
-                                <div class="company-name">Amazon Web Services</div>
-                                <p class="job-details">Validación de expertise en diseño de sistemas distribuidos.</p>
+                                <div class="company-name" contenteditable="true" data-placeholder="Institución">Amazon
+                                    Web Services</div>
+                                <p class="job-details" contenteditable="true" data-placeholder="Descripción breve">
+                                    Validación de expertise en diseño de sistemas distribuidos.</p>
                             </article>
-                            <article class="job-item">
+                            <article class="job-item item-wrapper">
                                 <div class="job-header">
-                                    <h4>Hackathon Winner - FinTech Peru</h4>
-                                    <span class="date">2022</span>
+                                    <h4 contenteditable="true" data-placeholder="Título del Logro">Hackathon Winner -
+                                        FinTech Peru</h4>
+                                    <span class="date" contenteditable="true" data-placeholder="Año">2022</span>
+                                    <span class="btn-delete-row" title="Eliminar fila">×</span>
                                 </div>
-                                <div class="company-name">BBVA</div>
-                                <p class="job-details">Primer lugar desarrollando una solución de micro-pagos QR.</p>
+                                <div class="company-name" contenteditable="true" data-placeholder="Institución">BBVA
+                                </div>
+                                <p class="job-details" contenteditable="true" data-placeholder="Descripción breve">
+                                    Primer lugar desarrollando una solución de micro-pagos QR.</p>
                             </article>
                         </div>
                     </div>
 
                     <div class="main-group">
-                        <h3>EDUCACIÓN</h3>
-                        <div id="education-list" contenteditable="true">
-                            <article class="edu-item">
+                        <div class="group-header">
+                            <h3>EDUCACIÓN</h3>
+                            <button class="btn-add-row" data-target="education-list" title="Añadir educación">+</button>
+                        </div>
+                        <div id="education-list">
+                            <article class="edu-item item-wrapper">
                                 <div class="job-header">
-                                    <h4>Ingeniería de Sistemas</h4>
-                                    <span class="date">2015 - 2020</span>
+                                    <h4 contenteditable="true" data-placeholder="Título / Carrera">Ingeniería de
+                                        Sistemas</h4>
+                                    <span class="date" contenteditable="true" data-placeholder="Periodo">2015 -
+                                        2020</span>
+                                    <span class="btn-delete-row" title="Eliminar fila">×</span>
                                 </div>
-                                <div class="company-name">Universidad Nacional Mayor de San Marcos</div>
+                                <div class="company-name" contenteditable="true"
+                                    data-placeholder="Universidad / Institución">Universidad Nacional Mayor de San
+                                    Marcos</div>
                             </article>
                         </div>
                     </div>
