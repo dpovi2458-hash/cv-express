@@ -255,19 +255,125 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnPrint) btnPrint.addEventListener('click', exportarCV);
 
-    // --- 7. ADMIN PANEL ---
-    function updateDebugPanel() {
-        debugInfo.innerHTML = `
-            <strong>Estado:</strong> ${appState.isPaid ? 'PAGADO' : 'PENDIENTE'}<br>
-            <strong>Código:</strong> ${appState.userCode || '---'}
-        `;
+    // --- 7. ADMIN PANEL PROFESIONAL ---
+    const adminPanel = document.getElementById('admin-panel');
+    const adminStatus = document.getElementById('admin-status');
+    const adminCode = document.getElementById('admin-code');
+    const adminRevenue = document.getElementById('admin-revenue');
+    const adminAttempts = document.getElementById('admin-attempts');
+    const adminHistory = document.getElementById('admin-history');
+    const btnCloseAdmin = document.getElementById('btn-close-admin');
+    const btnResetApp = document.getElementById('btn-reset-app');
+    const btnForceUnlock = document.getElementById('btn-force-unlock');
+
+    // Admin Stats Key
+    const ADMIN_STATS_KEY = 'cv_express_admin_stats';
+    let adminStats = JSON.parse(localStorage.getItem(ADMIN_STATS_KEY)) || {
+        attempts: 0,
+        revenue: 0,
+        codeHistory: []
+    };
+
+    function updateAdminPanel() {
+        if (!adminPanel) return;
+
+        // Update status
+        if (adminStatus) {
+            adminStatus.textContent = appState.isPaid ? '✅ PAGADO' : '⏳ PENDIENTE';
+            adminStatus.style.color = appState.isPaid ? '#68d391' : '#fc8181';
+        }
+
+        if (adminCode) {
+            adminCode.textContent = appState.userCode || '---';
+        }
+
+        if (adminRevenue) {
+            adminRevenue.textContent = `S/ ${adminStats.revenue.toFixed(2)}`;
+        }
+
+        if (adminAttempts) {
+            adminAttempts.textContent = adminStats.attempts;
+        }
+
+        if (adminHistory) {
+            if (adminStats.codeHistory.length > 0) {
+                adminHistory.innerHTML = adminStats.codeHistory.map(c =>
+                    `<div>${c.code} - ${c.date} ${c.paid ? '✅' : '⏳'}</div>`
+                ).join('');
+            } else {
+                adminHistory.innerHTML = '<div style="opacity:0.5">Sin historial</div>';
+            }
+        }
     }
 
-    if (window.location.hash === '#admin') {
-        document.getElementById('admin-panel').style.display = 'block';
+    function saveAdminStats() {
+        localStorage.setItem(ADMIN_STATS_KEY, JSON.stringify(adminStats));
     }
+
+    // Track payment attempt
+    function trackPaymentAttempt(code, paid = false) {
+        adminStats.attempts++;
+        if (paid) {
+            adminStats.revenue += 1;
+        }
+        adminStats.codeHistory.unshift({
+            code: code,
+            date: new Date().toLocaleTimeString(),
+            paid: paid
+        });
+        // Keep only last 10
+        if (adminStats.codeHistory.length > 10) {
+            adminStats.codeHistory.pop();
+        }
+        saveAdminStats();
+        updateAdminPanel();
+    }
+
+    // Admin Button Handlers
+    if (btnCloseAdmin) {
+        btnCloseAdmin.addEventListener('click', () => {
+            adminPanel.classList.add('hidden');
+        });
+    }
+
+    if (btnResetApp) {
+        btnResetApp.addEventListener('click', () => {
+            if (confirm('¿Estás seguro de resetear toda la aplicación? Esto borrará todos los datos.')) {
+                localStorage.clear();
+                location.reload();
+            }
+        });
+    }
+
+    if (btnForceUnlock) {
+        btnForceUnlock.addEventListener('click', () => {
+            appState.isPaid = true;
+            saveAppState();
+            trackPaymentAttempt(appState.userCode || 'ADMIN', true);
+            showView('editor');
+            updateAdminPanel();
+            alert('🔓 Editor desbloqueado manualmente.');
+        });
+    }
+
+    // Show admin panel if hash is #admin
+    if (window.location.hash === '#admin') {
+        adminPanel.classList.remove('hidden');
+    }
+
+    // Override confirm payment to track
+    const originalConfirmHandler = btnConfirmPayment.onclick;
+    btnConfirmPayment.addEventListener('click', () => {
+        const input = inputCode.value.trim().toUpperCase();
+        if (input === appState.userCode) {
+            trackPaymentAttempt(input, true);
+        } else {
+            trackPaymentAttempt(input, false);
+        }
+    });
 
     // Inicializar App
-    loadContent(); // Cargar contenido siempre (puede estar detrás)
-    initRouter();  // Decidir qué vista mostrar
+    loadContent();
+    initRouter();
+    updateAdminPanel();
 });

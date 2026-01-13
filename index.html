@@ -24,65 +24,133 @@
 <body>
     <!-- 1. VISTA LANDING -->
     <div id="view-landing" class="view-container">
+        <!-- Floating Particles Background -->
+        <div class="particles-bg"></div>
+
         <div class="landing-hero">
             <div class="landing-content">
                 <div class="logo-large">CV<span>EXPRESS</span></div>
-                <h1>Crea tu CV de Alto Impacto en Minutos</h1>
-                <p class="hero-subtitle">Diseño ATS-Friedly • Exportación PDF Nítida • 100% Privado</p>
+                <h1>Tu CV Profesional en <span class="highlight-text">5 Minutos</span></h1>
+                <p class="hero-subtitle">El secreto de los que consiguen entrevistas • Diseño ATS-Friendly • Sin
+                    registros</p>
 
                 <!-- CV Preview Mockup -->
                 <div class="cv-preview-container">
                     <div class="cv-preview-mockup">
-                        <div class="mock-header"></div>
-                        <div class="mock-body">
-                            <div class="mock-col-left"></div>
-                            <div class="mock-col-right">
-                                <div class="mock-line" style="width: 60%"></div>
-                                <div class="mock-line" style="width: 40%"></div>
-                                <div class="mock-line" style="width: 90%; margin-top: 10px"></div>
-                                <div class="mock-line"></div>
-                                <div class="mock-line"></div>
-                            </div>
+                        <div class="mock-sidebar">
+                            <div class="mock-avatar"></div>
+                            <div class="mock-line" style="width: 80%"></div>
+                            <div class="mock-line" style="width: 60%"></div>
+                            <div class="mock-line" style="width: 70%"></div>
+                        </div>
+                        <div class="mock-main">
+                            <div class="mock-line" style="width: 50%; height: 8px; background: #2b6cb0"></div>
+                            <div class="mock-line" style="width: 30%; margin-bottom: 15px"></div>
+                            <div class="mock-line"></div>
+                            <div class="mock-line" style="width: 90%"></div>
+                            <div class="mock-line" style="width: 80%"></div>
+                            <div class="mock-line" style="width: 85%; margin-top: 15px"></div>
+                            <div class="mock-line" style="width: 75%"></div>
                         </div>
                     </div>
+                    <div class="mockup-label">🎯 Plantilla "David Povis" - La más usada por developers</div>
                 </div>
 
                 <!-- How It Works -->
                 <div class="how-it-works">
                     <div class="hiw-step">
-                        <span class="hiw-icon">💸</span>
+                        <div class="hiw-icon-circle">💸</div>
                         <span class="hiw-title">1. Paga S/ 1.00</span>
-                        <span class="hiw-desc">Acceso inmediato y de por vida.</span>
+                        <span class="hiw-desc">Acceso inmediato vía Yape o Plin</span>
                     </div>
+                    <div class="hiw-connector"></div>
                     <div class="hiw-step">
-                        <span class="hiw-icon">📝</span>
-                        <span class="hiw-title">2. Edita tus Datos</span>
-                        <span class="hiw-desc">Plantilla profesional lista para usar.</span>
+                        <div class="hiw-icon-circle">✏️</div>
+                        <span class="hiw-title">2. Edita en Vivo</span>
+                        <span class="hiw-desc">Clic y escribe, así de simple</span>
                     </div>
+                    <div class="hiw-connector"></div>
                     <div class="hiw-step">
-                        <span class="hiw-icon">📄</span>
+                        <div class="hiw-icon-circle">📄</div>
                         <span class="hiw-title">3. Descarga PDF</span>
-                        <span class="hiw-desc">Formato A4 perfecto para postular.</span>
+                        <span class="hiw-desc">Formato A4 listo para enviar</span>
                     </div>
                 </div>
 
                 <div class="pricing-card">
                     <div class="price-tag">
+                        <span class="old-price">S/ 15</span>
                         <span class="currency">S/</span>
-                        <span class="amount">1.00</span>
-                        <span class="period">/ único</span>
+                        <span class="amount">1</span>
+                        <span class="period">.00</span>
                     </div>
+                    <div class="promo-badge">🔥 OFERTA DE LANZAMIENTO</div>
                     <ul class="features-list">
                         <li>✅ Plantilla "David Povis" Premium</li>
-                        <li>✅ Edición en tiempo real</li>
-                        <li>✅ Sin marcas de agua</li>
-                        <li>✅ Acceso de por vida</li>
+                        <li>✅ Edición ilimitada en tiempo real</li>
+                        <li>✅ Sin marcas de agua ni logos</li>
+                        <li>✅ Acceso de por vida (no es suscripción)</li>
+                        <li>✅ Soporte por WhatsApp</li>
                     </ul>
-                    <button id="btn-start-now" class="btn-cta Pulse">Crear mi CV Ahora</button>
-                    <p class="secure-text">🔒 Pago seguro vía Yape/Plin</p>
-                    <div class="social-proof">
-                        <span>⭐</span>
-                        <span><strong>+500 CVs</strong> creados hoy</span>
+                    <button id="btn-start-now" class="btn-cta Pulse">Crear mi CV Ahora →</button>
+                    <p class="secure-text">🔒 Pago seguro vía Yape/Plin • Acceso instantáneo</p>
+                </div>
+
+                <!-- Testimonials -->
+                <div class="testimonials-section">
+                    <h3 class="section-title">💬 Lo que dicen nuestros usuarios</h3>
+                    <div class="testimonials-grid">
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                            <p>"Conseguí 3 entrevistas en una semana. El diseño es limpio y profesional."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">JR</div>
+                                <div class="author-info">
+                                    <strong>Juan R.</strong>
+                                    <span>Backend Developer</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                            <p>"Por 1 sol tienes un CV mejor que los de Canva. 100% recomendado."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">MC</div>
+                                <div class="author-info">
+                                    <strong>María C.</strong>
+                                    <span>UX Designer</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                            <p>"Lo mejor es que se guarda solo. No perdí nada cuando cerré la pestaña."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">PL</div>
+                                <div class="author-info">
+                                    <strong>Pedro L.</strong>
+                                    <span>Data Analyst</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Proof Counter -->
+                <div class="social-proof-bar">
+                    <div class="proof-item">
+                        <span class="proof-number" id="counter-cvs">1,247</span>
+                        <span class="proof-label">CVs Creados</span>
+                    </div>
+                    <div class="proof-divider"></div>
+                    <div class="proof-item">
+                        <span class="proof-number">4.9/5</span>
+                        <span class="proof-label">Satisfacción</span>
+                    </div>
+                    <div class="proof-divider"></div>
+                    <div class="proof-item">
+                        <span class="proof-number">98%</span>
+                        <span class="proof-label">Recomiendan</span>
                     </div>
                 </div>
             </div>
@@ -367,12 +435,50 @@
         </main>
     </div>
 
-    <!-- PANEL ADMIN LOCAL (Oculto) -->
-    <div id="admin-panel"
-        style="display:none; position:fixed; bottom:0; right:0; background:black; color:lime; padding:10px; opacity:0.8; z-index:9999;">
-        <h4>Debug Panel</h4>
-        <button onclick="localStorage.clear(); location.reload()">Reset App</button>
-        <div id="debug-info"></div>
+    <!-- PANEL ADMIN PROFESIONAL -->
+    <div id="admin-panel" class="admin-panel-modern hidden">
+        <div class="admin-header">
+            <h3>🔐 Panel de Control</h3>
+            <button id="btn-close-admin" class="btn-close-admin">×</button>
+        </div>
+        <div class="admin-body">
+            <div class="admin-stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-info">
+                    <span class="stat-value" id="admin-revenue">S/ 0.00</span>
+                    <span class="stat-label">Ingresos Estimados</span>
+                </div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-info">
+                    <span class="stat-value" id="admin-attempts">0</span>
+                    <span class="stat-label">Intentos de Pago</span>
+                </div>
+            </div>
+
+            <div class="admin-section">
+                <h4>Estado del Usuario Actual</h4>
+                <div class="admin-info-row">
+                    <span class="info-label">Estado:</span>
+                    <span class="info-value" id="admin-status">---</span>
+                </div>
+                <div class="admin-info-row">
+                    <span class="info-label">Código:</span>
+                    <span class="info-value" id="admin-code">---</span>
+                </div>
+            </div>
+
+            <div class="admin-section">
+                <h4>Historial de Códigos</h4>
+                <div id="admin-history" class="admin-history"></div>
+            </div>
+
+            <div class="admin-actions">
+                <button id="btn-reset-app" class="btn-admin-action btn-danger">🗑️ Resetear App</button>
+                <button id="btn-force-unlock" class="btn-admin-action btn-success">🔓 Forzar Desbloqueo</button>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
